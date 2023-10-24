@@ -35,6 +35,6 @@ data1 = [197, 130, 1]
 data2 = [235, 140, 4]  
 data3 = [240, 144, 128, 128] 
 
-print(validUTF8(data1))  # True
-print(validUTF8(data2))  # False
-print(validUTF8(data3))  # True
+print(validUTF8(data1))  
+print(validUTF8(data2)) 
+print(validUTF8(data3))  
