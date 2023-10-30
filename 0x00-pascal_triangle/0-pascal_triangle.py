@@ -1,19 +1,19 @@
-#!/usr/bin/python3
-n = int(input("enter the row number:"))
-list1 =[}
-for i in range(n):
-    temp_list=[]
-    for j in range (i+1):
-        if j==0 or j==i:
-            tem_list.append(1)
-        else:
-            tem_list.append(list1[i-1][j-1] + list[i-1][j])
-    list1.append(temp_list)
-print(list1)
+def pascal_triangle(n):
+    if n <= 0:
+        return []
 
-for i in range(n):
-    for j in range(n-i-1):
-        print(format" "<2"),end="")
-    for j in range(i+1):
-        print(format(list1[i][j],"<3"),end=" ")
-    print()
+    triangle = [[1]]
+    
+    for i in range(1, n):
+        prev_row = triangle[-1]
+        new_row = [1]
+
+        for j in range(1, i):
+            new_row.append(prev_row[j - 1] + prev_row[j])
+
+        new_row.append(1)
+        triangle.append(new_row)
+
+    return triangle
+
+
