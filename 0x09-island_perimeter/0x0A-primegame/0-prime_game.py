@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+
 def is_prime(num):
     if num <= 1:
         return False
@@ -31,7 +33,7 @@ def isWinner(x, nums):
     else:
         return max(winner_count, key=winner_count.get)
 
-
-x = 3
-nums = [10, 15, 20]
-print(isWinner(x, nums))  
+if __name__ == "__main__":
+    x = 3
+    nums = [10, 15, 20]
+    print(isWinner(x, nums)) 
