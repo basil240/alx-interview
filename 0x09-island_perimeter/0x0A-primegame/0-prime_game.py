@@ -1,48 +1,37 @@
 def is_prime(num):
-    if num < 2:
+    if num <= 1:
         return False
-    for i in range(2, int(num ** 0.5) + 1):
-        if num % i == 0:
+    if num <= 3:
+        return True
+    if num % 2 == 0 or num % 3 == 0:
+        return False
+    i = 5
+    while i * i <= num:
+        if num % i == 0 or num % (i + 2) == 0:
             return False
+        i += 6
     return True
 
-def find_primes(n):
-    primes = []
-    for i in range(2, n + 1):
-        if is_prime(i):
-            primes.append(i)
-    return primes
-
-def simulate_game(n):
-    primes = find_primes(n)
-    # If the number itself is prime, the starting player wins
-    if n in primes:
-        return "Maria"
-    # If the number is even, the starting player loses
-    if n % 2 == 0:
-        return "Ben"
-    # Otherwise, the starting player wins
-    return "Maria"
-
 def isWinner(x, nums):
-    maria_wins = 0
-    ben_wins = 0
-
+    winner_count = {"Maria": 0, "Ben": 0}
+    
     for n in nums:
-        winner = simulate_game(n)
-        if winner == "Maria":
-            maria_wins += 1
-        elif winner == "Ben":
-            ben_wins += 1
-
-    if maria_wins > ben_wins:
-        return "Maria"
-    elif ben_wins > maria_wins:
-        return "Ben"
-    else:
+        primes = [i for i in range(2, n + 1) if is_prime(i)]
+        
+        prime_count = len(primes)
+        
+        if prime_count % 2 == 1:
+            winner_count["Maria"] += 1
+        else:
+            winner_count["Ben"] += 1
+    
+    max_wins = max(winner_count.values())
+    if max_wins == 0:
         return None
+    else:
+        return max(winner_count, key=winner_count.get)
 
-# Test the function with the given example
+
 x = 3
-nums = [4, 5, 1]
-print(isWinner(x, nums))  # Output: "Ben"
+nums = [10, 15, 20]
+print(isWinner(x, nums))  
